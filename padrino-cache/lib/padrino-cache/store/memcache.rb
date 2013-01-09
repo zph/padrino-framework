@@ -37,9 +37,15 @@ module Padrino
         #
         # @api public
         def get(key)
-          @backend.get(key)
-        rescue Memcached::NotFound
-          nil
+          if @backend.class.name == "Memcached"
+            begin
+              @backend.get(key)
+            rescue Memcached::NotFound
+              nil
+            end
+          else
+            @backend.get(key)
+          end
         end
 
         ##
