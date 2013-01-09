@@ -57,7 +57,7 @@ module Padrino
         #
         # @api public
         def set(key, value, opts = nil)
-          if opts && opts[:expires_in]
+          if opts && opts[:expires_in] && opts[:expires_in].to_i != -1
             expires_in = opts[:expires_in].to_i
             expires_in = (@backend.class.name == "MemCache" ? expires_in : Time.new.to_i + expires_in) if expires_in < EXPIRES_EDGE
             @backend.set(key, value, expires_in)

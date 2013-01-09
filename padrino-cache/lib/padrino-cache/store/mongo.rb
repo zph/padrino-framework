@@ -67,7 +67,7 @@ module Padrino
         def set(key, value, opts = nil)
           key = key.to_s
           value = BSON::Binary.new(Marshal.dump(value)) if value
-          if opts && opts[:expires_in]
+          if opts && opts[:expires_in] && opts[:expires_in].to_i != -1
             expires_in = opts[:expires_in].to_i
             expires_in = Time.now.utc + expires_in if expires_in < EXPIRES_EDGE
           else

@@ -66,7 +66,7 @@ module Padrino
         # @api public
         def set(key, value, opts = nil)
           init
-          if opts && opts[:expires_in]
+          if opts && opts[:expires_in] && opts[:expires_in].to_i != -1
             expires_in = opts[:expires_in].to_i
             expires_in = Time.new.to_i + expires_in if expires_in < EXPIRES_EDGE
           else
