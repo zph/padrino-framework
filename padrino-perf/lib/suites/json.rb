@@ -28,9 +28,9 @@ module PadrinoPerf
       if loaded_libs.size >= 2
         warn <<-WARN
 Concurring json libraries have been loaded. This incurs an
-unneccessary memory overhead at should be avoided. Consult the
+unneccessary memory overhead and should be avoided. Consult the
 following call stacks to see who loaded the offending libraries
-and contact the authors if necessary:"
+and contact the authors if necessary:
 WARN
         loaded_libs.each do |name, stack|
           $stderr.puts "============"
