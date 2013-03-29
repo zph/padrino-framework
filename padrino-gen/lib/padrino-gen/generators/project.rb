@@ -120,6 +120,8 @@ module Padrino
       def git_author_name
         git_author_name = `git config user.name`.chomp
         git_author_name.empty? ? "TODO: Write your name" : git_author_name
+      rescue Errno::ENOENT
+        "TODO: Write your name"
       end
 
       # Returns the git author email config or a fill-in value
@@ -128,6 +130,8 @@ module Padrino
       def git_author_email
         git_author_email = `git config user.email`.chomp
         git_author_email.empty? ? "TODO: Write your email address" : git_author_email
+      rescue Errno::ENOENT
+        "TODO: Write your name"
       end
     end # Project
   end # Generators
