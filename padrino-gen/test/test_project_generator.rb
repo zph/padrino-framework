@@ -12,6 +12,11 @@ describe "ProjectGenerator" do
   end
 
   context 'the project generator' do
+    should "git is present" do
+      assert_file_exists(`which git`.chomp)
+      assert(system "#{ENV['HOME']}/.gitconfig")
+    end
+
     should "allow simple generator to run and create base_app with no options" do
       capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}") }
       assert_file_exists("#{@apptmp}/sample_project")
