@@ -17,6 +17,20 @@ describe "ProjectGenerator" do
       assert(system "#{ENV['HOME']}/.gitconfig")
     end
 
+    context "test_git_config" do
+      should "not throw an exception if gitconfig file exists" do
+        generator = Padrino::Generators::Project.new(['project'])
+        assert(generator.git_author_name) 
+      end
+
+      should "throws an exception if gitconfig is missing" do
+       generator_mock = MiniTest::Mock.new
+       generator_mock.expect(:system, 1) 
+       generator = Padrino::Generators::Project.new(['project'])
+       assert_equal(generator.git_author_name, 'TODO: Write your name')
+      end
+    end
+
     should "allow simple generator to run and create base_app with no options" do
       capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}") }
       assert_file_exists("#{@apptmp}/sample_project")

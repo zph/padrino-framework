@@ -1,5 +1,6 @@
 require File.expand_path('../../../load_paths', __FILE__)
 require File.join(File.dirname(__FILE__), '..', '..', 'padrino-core', 'test', 'mini_shoulda')
+require 'minitest/mock'
 require 'rack/test'
 require 'rack'
 require 'uuid'
